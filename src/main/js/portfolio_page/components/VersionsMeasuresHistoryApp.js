@@ -17,30 +17,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import React from "react";
-// SonarComponents (referenced as sonar-components here, see the Webpack config)
-// exposes React components exposed by SonarQube.
-import { DeferredSpinner } from "sonar-components";
 import { findVersionsAndMeasures } from "../../common/api";
 import MeasuresHistory from "./MeasuresHistory";
 
 export default class VersionsMeasuresHistoryApp extends React.PureComponent {
   state = {
     loading: true,
-    data: []
+    data: [],
   };
 
   componentDidMount() {
-    findVersionsAndMeasures(this.props.project).then(data => {
+    findVersionsAndMeasures(this.props.project).then((data) => {
       this.setState({
         loading: false,
-        data
+        data,
       });
     });
   }
 
   render() {
     if (this.state.loading) {
-      return <div className="page page-limited"><DeferredSpinner /></div>;
+      return <div className="page page-limited">Loading...</div>;
     }
 
     return (
@@ -75,7 +72,9 @@ export default class VersionsMeasuresHistoryApp extends React.PureComponent {
           </thead>
           <tbody>
             {this.state.data !== undefined &&
-              this.state.data.map((value, idx) => <MeasuresHistory measure={value} key={idx} />)}
+              this.state.data.map((value, idx) => (
+                <MeasuresHistory measure={value} key={idx} />
+              ))}
           </tbody>
         </table>
       </div>

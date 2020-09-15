@@ -18,31 +18,26 @@ module.exports = {
 
     // Using React:
     portfolio_page: ["./src/main/js/portfolio_page/index.js"],
-    admin_page: ["./src/main/js/admin_page/index.js"]
+    admin_page: ["./src/main/js/admin_page/index.js"],
   },
   output: {
     // The entry point files MUST be shipped inside the final JAR's static/
     // directory.
     path: path.join(__dirname, "../../target/classes/static"),
-    filename: "[name].js"
+    filename: "[name].js",
   },
   resolve: {
-    root: path.join(__dirname, "src/main/js")
+    root: path.join(__dirname, "src/main/js"),
   },
   externals: {
-    // React 16.8 ships with SonarQube, and should be re-used to avoid 
+    // React 16.8 ships with SonarQube, and should be re-used to avoid
     // collisions at runtime.
     react: "React",
     "react-dom": "ReactDOM",
     // Register the Sonar* globals as packages, to simplify importing.
-    // See src/main/js/common/api.js for more information on what is exposed 
+    // See src/main/js/common/api.js for more information on what is exposed
     // in SonarRequest.
     "sonar-request": "SonarRequest",
-    // TODO: provide an example
-    "sonar-measures": "SonarMeasures",
-    // See src/main/js/portfolio_page/components/MeasuresHistory.js for some
-    // examples using React components from SonarQube.
-    "sonar-components": "SonarComponents"
   },
   module: {
     // Our example uses Babel to transpile our code.
@@ -50,14 +45,14 @@ module.exports = {
       {
         test: /\.js$/,
         loader: "babel",
-        exclude: /(node_modules)/
+        exclude: /(node_modules)/,
       },
       {
         test: /\.css/,
-        loader: "style-loader!css-loader!postcss-loader"
+        loader: "style-loader!css-loader!postcss-loader",
       },
-      { test: /\.json$/, loader: "json" }
-    ]
+      { test: /\.json$/, loader: "json" },
+    ],
   },
   postcss() {
     return [
@@ -67,9 +62,9 @@ module.exports = {
           "last 3 Firefox versions",
           "last 3 Safari versions",
           "last 3 Edge versions",
-          "IE 11"
-        ]
-      })
+          "IE 11",
+        ],
+      }),
     ];
-  }
+  },
 };

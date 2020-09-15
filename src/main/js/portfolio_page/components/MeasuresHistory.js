@@ -17,53 +17,44 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import React from "react";
-// SonarComponents (referenced as sonar-components here, see the Webpack config)
-// exposes React components exposed by SonarQube.
-import { Level, Rating } from "sonar-components";
-// SonarMeasures (referenced as sonar-measures here, see the Webpack config)
-// exposes helper functions for formatting and handling measure values.
-import { formatMeasure } from "sonar-measures";
+import { formatRating } from "../../common/utils";
 
 export default function MeasuresHistory(props) {
   return (
     <tr>
       <td className="thin nowrap text-center">
         <div className="code-components-cell">
-          <span>
-            <Level level={props.measure.alert_status || "OK"} />
-          </span>
-        </div>
-      </td>
-      <td className="thin nowrap text-right">
-        <div className="code-components-cell"><span>{formatMeasure(props.measure.bugs, "SHORT_INT")}</span></div>
-      </td>
-      <td className="thin nowrap text-right">
-        <div className="code-components-cell">
-          <span>
-            <Rating value={props.measure.reliability_rating || 1} />
-          </span>
+          <span>Quality gate: {props.measure.alert_status || "OK"}</span>
         </div>
       </td>
       <td className="thin nowrap text-right">
         <div className="code-components-cell">
-          <span>{formatMeasure(props.measure.vulnerabilities, "SHORT_INT")}</span>
+          <span>{props.measure.bugs}</span>
         </div>
       </td>
       <td className="thin nowrap text-right">
         <div className="code-components-cell">
-          <span>
-            <Rating value={props.measure.security_rating || 1} />
-          </span>
+          <span>{formatRating(props.measure.reliability_rating || 1)}</span>
         </div>
       </td>
       <td className="thin nowrap text-right">
-        <div className="code-components-cell"><span>{formatMeasure(props.measure.sqale_index, "SHORT_WORK_DUR")}</span></div>
+        <div className="code-components-cell">
+          <span>{props.measure.vulnerabilities}</span>
+        </div>
       </td>
       <td className="thin nowrap text-right">
         <div className="code-components-cell">
-          <span>
-            <Rating value={props.measure.sqale_rating || 1} />
-          </span>
+          <span>{formatRating(props.measure.security_rating || 1)}</span>
+        </div>
+      </td>
+      <td className="thin nowrap text-right">
+        <div className="code-components-cell">
+          <span>{props.measure.sqale_index}</span>
+        </div>
+      </td>
+      <td className="thin nowrap text-right">
+        <div className="code-components-cell">
+          <span>{formatRating(props.measure.sqale_rating || 1)}</span>
         </div>
       </td>
     </tr>

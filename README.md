@@ -74,17 +74,16 @@ The pages are registered in `src/main/java/org/sonarsource/plugins/example/web/M
 
 #### Helper APIs exposed by SonarQube
 
-There are several helper APIs exposed by SonarQube, like functions to make authenticated API requests, or parsing measures data. SonarQube also exposes several React components, in case you want to use React for your own pages.
-
-You can find the full list of exposed helpers [here](https://github.com/SonarSource/sonarqube/blob/master/server/sonar-web/src/main/js/app/components/extensions/exposeLibraries.ts).
+There are several request APIs exposed by SonarQube to make authenticated API calls.
 
 The included pages contain several examples:
 
 * **API calls (`window.SonarRequest`)**  
   Check `src/main/js/common/api.js` for some examples.
-* **Measure helpers (`window.SonarMeasures`)**  
-  Check `src/main/js/portfolio_page/components/MeasuresHistory.js` for some examples.
-* **React Components (`window.SonarComponents`)**  
-  Check `src/main/js/portfolio_page/components/MeasuresHistory.js`, `src/main/js/portfolio_page/components/VersionsMeasuresHistoryApp.js` and `src/main/js/admin_page/components/InstanceStatisticsApp.js` for some examples.
 * **Localization (`window.t()` and `window.tp()`)**  
   Localizable UI strings are defined in `src/main/resources/org/sonar/l10n/example/`. They are loaded at startup time, and can used by the global `t()` and `tp()` functions. See `src/main/js/admin_page/components/InstanceStatisticsApp.js` and `src/main/js/portfolio_page/components/VersionsMeasuresHistoryApp.js` for some examples. 
+
+**Edit**: As of September 15th 2020, the following apis are deprecated and won't be maintained anymore. It is therefore not recommended to use them as they might be exposed to breaking changes. They would be dropped after the next LTS is released.
+
+* **Measure helpers (`window.SonarMeasures`)** 
+* **React Components (`window.SonarComponents`)**  
