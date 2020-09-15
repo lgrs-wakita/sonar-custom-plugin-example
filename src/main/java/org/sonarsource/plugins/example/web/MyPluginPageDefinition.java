@@ -36,7 +36,7 @@ public class MyPluginPageDefinition implements PageDefinition {
         .setName("Global Page using Vanilla JS")
         .build())
       .addPage(Page.builder("example/project_page")
-        .setName("Project Page using Backbone JS")
+        .setName("Component Page using Backbone JS")
         .setScope(COMPONENT)
         .build())
       .addPage(Page.builder("example/portfolio_page")
